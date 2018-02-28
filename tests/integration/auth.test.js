@@ -5,10 +5,10 @@ const request = require('supertest');
 describe('auth middleware', () => {
   let server;
   
-  beforeEach(() => { server = require('../../index'); })
+  beforeEach(() => { server = require('../../index'); });
   afterEach(async () => {
+    await server.close();
     await Genre.remove({});
-    server.close();
   });
 
   let token;
@@ -18,7 +18,7 @@ describe('auth middleware', () => {
       .post('/api/genres')
       .set('x-auth-token', token)
       .send({ name: 'genre1' });
-  }
+  };
 
   beforeEach(() => {
     token = new User().generateAuthToken();

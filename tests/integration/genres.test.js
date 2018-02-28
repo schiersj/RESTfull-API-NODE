@@ -8,7 +8,7 @@ describe('/api/genres', () => {
 
   beforeEach(() => { server = require('../../index'); });
   afterEach(async () => { 
-    server.close();
+    await server.close();
     await Genre.remove({});
   });
 
@@ -16,7 +16,7 @@ describe('/api/genres', () => {
     it('should return all genres', async () => {
       const genres = [
         { name: 'genre1' },
-        { name: 'genre2' },
+        { name: 'genre2' }
       ];
       
       await Genre.collection.insertMany(genres);
@@ -65,7 +65,7 @@ describe('/api/genres', () => {
         .post('/api/genres')
         .set('x-auth-token', token)
         .send({ name });
-    }
+    };
 
     beforeEach(() => {
       token = new User().generateAuthToken();
@@ -114,7 +114,7 @@ describe('/api/genres', () => {
         .put('/api/genres/' + id)
         .set('x-auth-token', token)
         .send({ name: newName });
-    }
+    };
 
     beforeEach(async () => {
       genre = new Genre({name: 'genre1'});
@@ -178,7 +178,7 @@ describe('/api/genres', () => {
         .delete('/api/genres/' + id)
         .set('x-auth-token', token)
         .send();
-    }
+    };
 
     beforeEach(async () => {
       genre = new Genre({name: 'genre1'});
@@ -186,7 +186,7 @@ describe('/api/genres', () => {
 
       id = genre._id;
       token = new User({isAdmin: true}).generateAuthToken();
-    })
+    });
 
     it('should return 401 if client is not logged in', async () => {
       token = '';
