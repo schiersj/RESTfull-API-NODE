@@ -3,6 +3,8 @@ const { Genre } = require('../../models/genre');
 const request = require('supertest');
 
 describe('auth middleware', () => {
+  let server;
+  
   beforeEach(() => { server = require('../../index'); })
   afterEach(async () => {
     await Genre.remove({});
