@@ -1,9 +1,10 @@
 const validateObjectId = require('../middleware/validateObjectId');
 const auth = require('../middleware/auth');
-const { Customer, validate } = require('../models/customer');
+const { Customer, validateCustomer } = require('../models/customer');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+const validate = require('../middleware/validate');
 
 router.get('/', async (req, res) => {
   const customers = await Customer.find().sort('name');
@@ -16,10 +17,7 @@ router.get('/:id', validateObjectId, async (req, res) => {
   res.send(customer);
 });
 
-router.post('/', auth, async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
+router.post('/', [auth, validate(validateCustomer)], async (req, res) => {
   let customer = new Customer ({ 
     name: req.body.name,
     phone: req.body.phone,
@@ -30,10 +28,7 @@ router.post('/', auth, async (req, res) => {
   res.send(customer);
 });
 
-router.put('/:id', [auth, validateObjectId], async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
+router.put('/:id', [auth, validateObjectId, validate(validateCustomer)], async (req, res) => {
   const customer = await Customer.findByIdAndUpdate(req.params.id, { 
     name: req.body.name,
     phone: req.body.phone,
