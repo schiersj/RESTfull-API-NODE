@@ -7,7 +7,7 @@ RESTful API using Node.js, Express.js and MongoDB
 * [MongoDB](https://www.mongodb.com/) - No-SQL database
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT Licence - see the [LICENCE](LICENCE) file for details
 
 ## Acknowledgments
 * Props to **Mosh Hamedani** and his course **'The Complete Node.js Course'** on **programmingwithmosh.com**
