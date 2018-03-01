@@ -6,5 +6,8 @@ RESTful API using Node.js, Express.js and MongoDB
 * [Express.js](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 * [MongoDB](https://www.mongodb.com/) - No-SQL database
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
 ## Acknowledgments
 * Props to **Mosh Hamedani** and his course **'The Complete Node.js Course'** on **programmingwithmosh.com**
